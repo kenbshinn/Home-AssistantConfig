@@ -1,0 +1,169 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: !secret home_elevation
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/New_York
+  # Customization file
+  customize: !include customize.yaml
+
+# Show links to resources in log and frontend
+introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  # api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  # base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+cloud:
+
+
+zwave:
+ usb_path: /dev/ttyACM0
+#  new_entity_ids: true
+
+ecobee:
+  api_key: !secret ecobee_api
+  
+
+# Weather prediction
+sensor:
+  - platform: wunderground
+    api_key: !secret wundergound_api
+    monitored_conditions:
+      - alerts
+      - feelslike_string
+      - heat_index_string
+      - location
+      - observation_time
+      - relative_humidity
+      - temperature_string
+      - weather
+      - wind_string
+  - platform: moon
+  - platform: sense
+    email: !secret sense_email
+    password: !secret sense_password
+    monitored_conditions:
+      - active_usage
+      - active_production
+      - daily_usage
+      - daily_production
+      - weekly_usage
+      - weekly_production
+      - monthly_usage
+      - monthly_production
+      - yearly_usage
+      - yearly_production
+
+      
+    
+# Text to speech
+tts:
+  - platform: google
+  
+#tradfri:
+#  host: !secret tradfri_host
+#  api_key: !secret tradfri_api
+  
+mqtt:
+  broker: !secret mqtt_broker
+  port: !secret mqtt_port
+  client_id: !secret mqtt_clientid
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  
+device_tracker: !include_dir_list device_tracker/
+
+      
+light: !include_dir_list lights/
+
+google:
+  client_id: !secret google_clientid
+  client_secret: !secret google_clientsecret
+  
+ifttt:
+ key: !secret ifttt_key
+ 
+notify:
+  platform: pushbullet
+  api_key: !secret pushbullet_api
+  name: pushbullet
+
+media_player:
+  - platform: plex
+    entity_namespace: 'plex'
+    include_non_clients: true
+    scan_interval: 5
+    show_all_controls: false
+    use_custom_entity_ids: true
+    use_episode_art: true
+    
+ 
+calendar:
+  - platform: todoist
+    token: !secret todoist_token
+    
+#camera:
+#  - platform: zoneminder
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+scene:
+  - name: Master Bedroom Bright
+    entities:
+        light.master_bedroom:
+            to: on
+            brightness: 255
+  - name: Master Bedroom Half Bright
+    entities:
+        light.master_bedroom:
+            to: on
+            brightness: 118
+  - name: Master Bedroom Dim
+    entities:
+        light.master_bedroom:
+            to: on
+            brightness: 20

@@ -1,0 +1,12 @@
+*
+!*.yaml
+!scenes
+!.gitignore
+secrets.yaml
+known_devices.yaml
+ecobee.conf
+entity_registry.yaml
+google.calendar.yaml
+harmony_livingroom_harmony_hub.conf
+plex.conf
+fradfri.conf

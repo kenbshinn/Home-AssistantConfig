@@ -1,0 +1,186 @@
+weather_card:
+  name: Weather
+  entities:
+  - sensor.pws_location
+  - sensor.pws_observation_time
+  - sensor.pws_weather
+  - sensor.pws_feelslike_string
+  - sensor.pws_temperature_string
+  - sensor.pws_heat_index_string
+  - sensor.pws_relative_humidity
+  - sensor.pws_alerts
+  - sensor.pws_wind_string
+  view: false
+
+Sense_Card:
+  name: Sense Energy Monitoring
+  entities:
+  - sensor.energy_production
+  - sensor.energy_usage
+  - sensor.daily_production
+  - sensor.daily_usage
+  - sensor.weekly_production
+  - sensor.weekly_usage
+  - sensor.monthly_production
+  - sensor.monthly_usage
+  - sensor.yearly_production
+  - sensor.yearly_usage
+  
+house_environment_card:
+  name: House Environment
+  entities:
+  - zone.home
+  - climate.main_floor
+  - binary_sensor.bedroom_occupancy
+  - binary_sensor.kids_room_occupancy
+  - binary_sensor.living_room_occupancy
+  - binary_sensor.main_floor_occupancy
+  - sensor.bedroom_temperature
+  - sensor.kids_room_temperature
+  - sensor.living_room_temperature
+  - sensor.main_floor_humidity
+  - sensor.main_floor_temperature
+
+Google_Wifi_Card:
+ name: Google Wifi
+ entities:
+ - sensor.google_wifi_current_version
+ - sensor.google_wifi_last_restart
+ - sensor.google_wifi_local_ip
+ - sensor.google_wifi_new_version
+ - sensor.google_wifi_status
+ - sensor.google_wifi_uptime
+
+people_card:
+ name: People
+ entities: 
+ - device_tracker.ken_st_tag
+ - device_tracker.tara_phone
+ - device_tracker.gearfit2ab96lan
+ - device_tracker.androide2f56aae50ade476lan
+ - device_tracker.android46800f55efe707eflan
+ 
+zooz_msensor01_card:
+ name: Office Motion Sensor
+ entities: 
+ - binary_sensor.zooz_zse40_4in1_sensor_sensor
+ - sensor.zooz_zse40_4in1_sensor_alarm_level
+ - sensor.zooz_zse40_4in1_sensor_alarm_type
+ - sensor.zooz_zse40_4in1_sensor_burglar
+ - sensor.zooz_zse40_4in1_sensor_clock
+ - sensor.zooz_zse40_4in1_sensor_emergency
+ - sensor.zooz_zse40_4in1_sensor_luminance
+ - sensor.zooz_zse40_4in1_sensor_power_management
+ - sensor.zooz_zse40_4in1_sensor_relative_humidity
+ - sensor.zooz_zse40_4in1_sensor_sourcenodeid
+ - sensor.zooz_zse40_4in1_sensor_system
+ - sensor.zooz_zse40_4in1_sensor_temperature
+ - sensor.alarm_level
+ - sensor.alarm_type
+ - binary_sensor.sensor
+ 
+network_hardware:
+  name: Local Area Network
+  entities:
+  - device_tracker.netgear_inetrouter
+  - device_tracker.testwifihere
+  - device_tracker.gwb072bf25b795lan
+  - device_tracker.f80d6037d0a8
+  - device_tracker.74547dfb4bcc
+  - device_tracker.st24fd5b000001411alan
+  - device_tracker.446132f0080b
+  
+door_sensor01:
+   name: Office Door Sensor
+   entities:
+   - sensor.ecolink_doorwindow_sensor_burglar
+   - sensor.ecolink_doorwindow_sensor_sourcenodeid
+   - sensor.ecolink_doorwindow_sensor_alarm_type
+   - sensor.ecolink_doorwindow_sensor_alarm_level
+   - binary_sensor.ecolink_doorwindow_sensor_sensor
+
+girls_ceiling_light_card:
+   name: Girls Ceiling Light
+   entities:
+   - light.girls_bedroom
+   - light.tradfri_bulb_e26_opal_1000lm_6
+   - light.tradfri_bulb_e26_opal_1000lm_7
+   - light.tradfri_bulb_e27_opal_1000lm_7
+   - media_player.girls_bedroom_speaker
+   - binary_sensor.kids_room_occupancy
+   
+  
+matthew_bedroom_card:
+   name: Matthew Bedroom
+   entities:
+   - light.matthew_bedroom_lamp_light
+   - light.matthew_bedroom_closet_light
+   - media_player.matthew_bedroom_speaker
+   
+master_bedroom_card:
+   name: Master Bedroom
+   entities:
+#   - light.master_bedroom
+   - light.master_bedroom_light_01
+   - light.master_bedroom_light_02
+   - light.master_bedroom_light_03
+   - light.master_bedroom_light_04
+   - media_player.master_bedroom_home
+   - binary_sensor.bedroom_occupancy
+
+master_bedroom_scene:
+   name: Master Bedroom Scenes
+   entities:
+   - scene.master_bedroom_bright
+   - scene.master_bedroom_dim
+   - scene.master_bedroom_half_bright
+family_view:
+  name: Family
+  view: yes
+  entities:
+   - group.people_card
+   
+LivingRoom_view:
+  name: Living Room
+  view: yes
+  entities:  
+   - binary_sensor.living_room_occupancy
+   
+master_bedroom_view:
+  name: Master Bedroom Room
+  view: yes
+  entities: 
+   - group.master_bedroom_card
+   - group.master_bedroom_scene
+
+girl_bedroom_view:
+  name: Girls Room
+  view: yes
+  entities: 
+   - group.girls_ceiling_light_card
+
+matthew_bedroom_view:
+  name: Matthew's Bedroom
+  view: yes
+  entities:
+   - group.matthew_bedroom_card
+  
+Office_View:
+  name: Office
+  view: yes
+  entities: 
+   - group.zooz_msensor01_card
+   - group.door_sensor01
+   - media_player.office_speaker
+   
+Dining_View:
+  name: Dinning Room
+  view: yes
+  entities:
+   - media_player.dining_room_speaker
+    
+Debbie_View:
+  name: Debbie's Room
+  view: yes
+  entities:
+   - media_player.basement_speaker

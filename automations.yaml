@@ -1,0 +1,67 @@
+- id: office_lighting_0001
+  alias: Turn on Office light when door is opened
+  trigger:
+  - entity_id: binary_sensor.ecolink_doorwindow_sensor_sensor
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+  - service: switch.turn_on
+    entity_id: switch.ge_12727_inwall_smart_switch_toggle_switch
+- alias: Turn off office lighting 5 minutes after last movement
+  trigger:
+    entity_id: sensor.zooz_zse40_4in1_sensor_alarm_level
+    from: '255'
+    platform: state
+    to: '0'
+    for:
+      minutes: 5
+  action:
+    service: switch.turn_off
+    entity_id: switch.ge_12727_inwall_smart_switch_toggle_switch
+  id: 49570aeeecbf43d9aa8846d43be10f51
+- alias: Turn off Girls Bedroom light 5 minutes after room is clear
+  trigger:
+    entity_id: binary_sensor.kids_room_occupancy
+    from: 'on'
+    platform: state
+    to: 'off'
+    for:
+      minutes: 5
+  action:
+    service: switch.turn_off
+    entity_id: group.girls_ceiling_light_card
+  id: 7adcbe3d13c5427a9f712d1e61453d90
+- id: '1525378689693'
+  alias: Ken is done work
+  trigger: []
+  condition: []
+  action: []
+- id: '1525396362395'
+  alias: Daddy is Home
+  trigger:
+  - entity_id: device_tracker.google_maps_113231397748292705258
+    from: Away
+    platform: state
+    to: Home
+  condition:
+  - after: '17:00'
+    before: '23:59'
+    condition: time
+  action:
+  - alias: ''
+    data:
+      entity_id: media_player.living_room_speaker
+      message: Daddy is almost home
+    service: tts.google_say
+- id: '1525562556101'
+  alias: Matthew - Bed Time
+  trigger:
+  - at: '20:00'
+    platform: time
+  condition: []
+  action:
+  - data:
+      entity_id: media_player.living_room_speaker
+      message: Matthew, it is time for bed.
+    service: tts.google_say
